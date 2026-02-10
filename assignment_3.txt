@@ -1,0 +1,261 @@
+1)
+
+MariaDB [fusco]> SELECT COUNT(*) as RowCount FROM vets;
++----------+
+| RowCount |
++----------+
+|    58253 |
++----------+
+
+2) This selects the count of rows in the table where the trimmed state is already trimmed and does not have any extra spaces.
+
+3)
+
+MariaDB [fusco]> DELETE FROM vets WHERE fname=" ";
+Query OK, 83 rows affected (0.032 sec)
+
+OR:
+
+MariaDB [fusco]> DELETE FROM vets WHERE fname=" " AND lname=" " AND town=" " AND state=" ";
+SELECT ROW_COUNT();
+
+83 empty rows
+
+4)
+
+MariaDB [fusco]> UPDATE vets SET state=trim(state);
+Query OK, 58170 rows affected (0.124 sec)
+Rows matched: 58170  Changed: 58170  Warnings: 0
+
+5)
+
+MariaDB [fusco]> UPDATE vets SET lname=TRIM(lname);
+Query OK, 8 rows affected (0.040 sec)
+Rows matched: 58170  Changed: 8  Warnings: 0
+
+MariaDB [fusco]> UPDATE vets SET fname=TRIM(fname);
+Query OK, 58170 rows affected (0.127 sec)
+Rows matched: 58170  Changed: 58170  Warnings: 0
+
+MariaDB [fusco]> UPDATE vets SET town=TRIM(town);
+Query OK, 58170 rows affected (0.125 sec)
+Rows matched: 58170  Changed: 58170  Warnings: 0
+
+MariaDB [fusco]> SELECT fname AS "First Name", lname AS "Last Name", town, state FROM vets WHERE fname LIKE'GUADALUPE%';
++-------------------+-----------+-------------+-------+
+| First Name        | Last Name | town        | state |
++-------------------+-----------+-------------+-------+
+| GUADALUPE MASIAS  | ALVAREZ   | DONNA       | TX    |
+| GUADALUPE         | FLORES    | BEXAR       | TX    |
+| GUADALUPE JR      | GALINDO   | ROCKPORT    | TX    |
+| GUADALUPE B L     | GARIBAY   | SAN DIEGO   | CA    |
+| GUADALUPE         | GONZALEZ  | ALICE       | TX    |
+| GUADALUPE MENDOZA | LEAL      | QUITAQUE    | TX    |
+| GUADALUPE         | LERMA     | EDCOUCH     | TX    |
+| GUADALUPE         | MARTINEZ  | LAREDO      | TX    |
+| GUADALUPE ESPARZA | MONTOYA   | ARGO        | IL    |
+| GUADALUPE         | PEREZ     | SAN JOAQUIN | CA    |
+| GUADALUPE JR      | PRADO     | MERCEDES    | TX    |
+| GUADALUPE         | RENDON    | CASA GRANDE | AZ    |
+| GUADALUPE NATAL   | ZUNIGA    | SAN ANTONIO | TX    |
++-------------------+-----------+-------------+-------+
+13 rows in set (0.021 sec)
+
+6)
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets WHERE LEFT(town, 3)="LOS";
++----------+
+| COUNT(*) |
++----------+
+|      586 |
++----------+
+1 row in set (0.021 sec)
+
+OR 
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets WHERE town LIKE "LOS%";
++----------+
+| COUNT(*) |
++----------+
+|      586 |
++----------+
+1 row in set (0.028 sec)
+
+7)
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets WHERE town="LOS ANGELES";
++----------+
+| COUNT(*) |
++----------+
+|      538 |
++----------+
+1 row in set (0.019 sec)
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets WHERE LEFT(town, 3)="LOS" AND town!="LOS ANGELES";
++----------+
+| COUNT(*) |
++----------+
+|       48 |
++----------+
+1 row in set (0.019 sec)
+
+8)
+
+MariaDB [fusco]> SELECT state, COUNT(*) FROM vets WHERE LEFT(town, 3)="LOS" AND town!="LOS ANGELES";
++-------+----------+
+| state | COUNT(*) |
++-------+----------+
+| CA    |       48 |
++-------+----------+
+1 row in set (0.020 sec)
+
+9)
+
+MariaDB [fusco]> SELECT lname, fname FROM vets WHERE state="GU" ORDER BY lname;
++-------------+---------------------+
+| lname       | fname               |
++-------------+---------------------+
+| AGUON       | JOSE QUINATA        |
+| ASANOMA     | FRANCISCO M         |
+| BENAVENTE   | DAVID GUERRERO      |
+| BIAGINI     | MARK FREDERICK      |
+| BLAS        | ANTHONY MARTIN M    |
+| BLAZ        | JAMES LUJAN         |
+| BORJA       | JUAN SANTOS         |
+| CABRERA     | JOAQUIN PALACIOS    |
+| CAMACHO     | DAVID BITANGA       |
+| CARTER      | DONALD SUMINGUIT    |
+| CASTRO      | JUAN PASCUAL R      |
+| CEPEDA      | JUAN DUENAS         |
+| CRUZ        | EDWARD CRUZ         |
+| CRUZ        | ENRIQUE SALAS       |
+| CRUZ        | JOSEPH AGUIGUI      |
+| CRUZ        | JOSEPH WILLIAM      |
+| CRUZ        | PEDRO AFLAGUE       |
+| CUASITO     | RONALD PEREZ        |
+| DAMIAN      | ALLAN JAMES         |
+| DE LEON     | HERMAN BORJA        |
+| DELA-CRUZ   | FREDERICO V         |
+| DIAZ        | EDWARD REYES        |
+| DOYLE       | ALBERT BARCINAS     |
+| DUENAS      | JOSE BAMBA          |
+| EAY         | RUDY EDEJER         |
+| ESCANO      | JUANITO MAIQUEZ     |
+| ESPINOSA    | VICENTE T           |
+| ESTEVES     | FERNANDO BARCINAS   |
+| EUSTAQUIO   | JOSEPH MARTIN       |
+| FINNEY      | HAROLD JAMES JR     |
+| FLORES      | BENNY SAN NICOLAS   |
+| FLORES      | DAVID CRUZ          |
+| FUNES       | DAVID JOHN          |
+| GORTON      | DAVID ATOIGUE       |
+| GUERRERO    | PEDRO ROSARIO       |
+| GUERRERO    | VINCENT FEJA        |
+| HERRERA     | JOSE BABAUTA        |
+| MARIANO     | JESUS ROSA          |
+| MENDIOLA    | ROBERT L G          |
+| MENO        | JESUS QUINENE       |
+| MESA        | TOMAS REYES         |
+| MOREHAM     | VINCENT PINAULA     |
+| NEDEDOG     | EMILIO NINAISEN     |
+| PANGELINAN  | GREGORIO L          |
+| PANGELINAN  | PEDRO CABRERA       |
+| PEREDA      | HENRY PANGELINAN    |
+| PEREZ       | JOHN ANTHONY        |
+| PEREZ       | VICENTE DUENAS      |
+| QUENGA      | JOHNNY CRUZ         |
+| QUIDACHAY   | JESUS AQUININGO     |
+| REYES       | TOMAS GARCIA        |
+| RIPPEL      | EUGENE RAYMOND      |
+| RIVERA      | THOMAS SALAS        |
+| RODRIGUEZ   | LUCAS HERRERA       |
+| SABLAN      | ANTONIO QUICHOCHO   |
+| SABLAN      | IGNACIO ESPINOSA    |
+| SABLAN      | JOHN TENERIO        |
+| SABLAN      | THOMAS QUICHOCHO    |
+| SAN NICOLAS | RUFO SANTOS         |
+| SAN NICOLAS | VICTOR P            |
+| SANCHEZ     | GEORGE SANTIAGO     |
+| SANTOS      | ENRIQUE ROSARIO     |
+| SANTOS      | ERNEST PABLO        |
+| SANTOS      | JAMES EDWARD ANDER  |
+| SANTOS      | RAFAEL SALAS        |
+| TAITAGUE    | JOHNNY SALAS        |
+| TORRE       | FRANCIS SAN NICOLAS |
+| TORRES      | PRISHARDO JOSE T    |
+| VIOLETT     | JAMES EDWARD        |
+| YOKOI       | RALPHAEL SGAMBELLUR |
++-------------+---------------------+
+70 rows in set (0.019 sec)
+
+10)
+
+MariaDB [fusco]> SELECT * FROM States;
++----------------------------+--------------+
+| State                      | Abbreviation |
++----------------------------+--------------+
+| "STATE(TERRITORY)"         |              |
+| "Alaska"                   | "AK"         |
+| "Alabama"                  | "AL"         |
+| "Arkansas"                 | "AR"         |
+| "American Samoa"           | "AS"         |
+| "Arizona"                  | "AZ"         |
+| "California"               | "CA"         |
+| "Colorado"                 | "CO"         |
+| "Connecticut"              | "CT"         |
+| "District of Columbia"     | "DC"         |
+| "Delaware"                 | "DE"         |
+| "Florida"                  | "FL"         |
+| "Georgia"                  | "GA"         |
+| "Guam"                     | "GU"         |
+| "Hawaii"                   | "HI"         |
+| "Iowa"                     | "IA"         |
+| "Idaho"                    | "ID"         |
+| "Illinois"                 | "IL"         |
+| "Indiana"                  | "IN"         |
+| "Kansas"                   | "KS"         |
+| "Kentucky"                 | "KY"         |
+| "Louisiana"                | "LA"         |
+| "Massachusetts"            | "MA"         |
+| "Maryland"                 | "MD"         |
+| "Maine"                    | "ME"         |
+| "Michigan"                 | "MI"         |
+| "Minnesota"                | "MN"         |
+| "Missouri"                 | "MO"         |
+| "Northern Mariana Islands" | "MP"         |
+| "Mississippi"              | "MS"         |
+| "Montana"                  | "MT"         |
+| "North Carolina"           | "NC"         |
+| "North Dakota"             | "ND"         |
+| "Nebraska"                 | "NE"         |
+| "New Hampshire"            | "NH"         |
+| "New Jersey"               | "NJ"         |
+| "New Mexico"               | "NM"         |
+| "Nevada"                   | "NV"         |
+| "New York"                 | "NY"         |
+| "Ohio"                     | "OH"         |
+| "Oklahoma"                 | "OK"         |
+| "Oregon"                   | "OR"         |
+| "Pennsylvania"             | "PA"         |
+| "Puerto Rico"              | "PR"         |
+| "Rhode Island"             | "RI"         |
+| "South Carolina"           | "SC"         |
+| "South Dakota"             | "SD"         |
+| "Tennessee"                | "TN"         |
+| "Trust Territories"        | "TT"         |
+| "Texas"                    | "TX"         |
+| "Utah"                     | "UT"         |
+| "Virginia"                 | "VA"         |
+| "Virgin Islands"           | "VI"         |
+| "Vermont"                  | "VT"         |
+| "Washington"               | "WA"         |
+| "Wisconsin"                | "WI"         |
+| "West Virginia"            | "WV"         |
+| "Wyoming"                  | "WY"         |
++----------------------------+--------------+
+58 rows in set (0.001 sec)
+
+The heading of the table in the CSV file appears in the database table
+
+Quotes around states and abbreviatiosn
+

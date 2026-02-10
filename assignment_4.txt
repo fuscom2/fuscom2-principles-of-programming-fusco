@@ -1,0 +1,155 @@
+1)
+
+MariaDB [fusco]> LOAD DATA LOCAL INFILE '/Users/marcofusco/Desktop/School/SUNY New Paltz/Spring 2026/Principles of Programming/Week 4/States_Territories.csv'
+    -> INTO TABLE States
+    -> FIELDS TERMINATED BY ','
+    -> ENCLOSED BY '"'
+    -> LINES TERMINATED BY '\n'
+    -> IGNORE 1 ROWS;
+Query OK, 57 rows affected (0.002 sec)               
+Records: 57  Deleted: 0  Skipped: 0  Warnings: 0
+
+2)
+
+MariaDB [fusco]> SELECT state, count(*) AS "cnt" FROM vets GROUP BY state ORDER BY count(*) DESC;
++-------+------+
+| state | cnt  |
++-------+------+
+| CA    | 5575 |
+| NY    | 4120 |
+| TX    | 3414 |
+| PA    | 3141 |
+| OH    | 3092 |
+| IL    | 2930 |
+| MI    | 2654 |
+| FL    | 1950 |
+| NC    | 1609 |
+| GA    | 1583 |
+| IN    | 1531 |
+| NJ    | 1484 |
+| MO    | 1411 |
+| MA    | 1322 |
+| VA    | 1304 |
+| TN    | 1291 |
+| AL    | 1207 |
+| WI    | 1160 |
+| MN    | 1072 |
+| KY    | 1055 |
+| WA    | 1050 |
+| MD    | 1014 |
+| OK    |  988 |
+| SC    |  895 |
+| LA    |  882 |
+| IA    |  852 |
+| WV    |  731 |
+| OR    |  709 |
+| MS    |  637 |
+| KS    |  626 |
+| AZ    |  622 |
+| CO    |  619 |
+| CT    |  612 |
+| AR    |  588 |
+| NM    |  399 |
+| NE    |  395 |
+| UT    |  365 |
+| PR    |  345 |
+| ME    |  342 |
+| HI    |  277 |
+| MT    |  268 |
+| DC    |  241 |
+| NH    |  227 |
+| ID    |  217 |
+| RI    |  207 |
+| ND    |  198 |
+| SD    |  195 |
+| NV    |  151 |
+| DE    |  122 |
+| WY    |  119 |
+| VT    |  100 |
+|       |   83 |
+| GU    |   70 |
+| XC    |   58 |
+| AK    |   57 |
+| XP    |   32 |
+| VQ    |   15 |
+| XG    |    7 |
+| XM    |    5 |
+| XJ    |    4 |
+| SO    |    4 |
+| XB    |    3 |
+| XN    |    3 |
+| ZZ    |    3 |
+| XE    |    3 |
+| CZ    |    2 |
+| XI    |    2 |
+| XF    |    2 |
+| XS    |    1 |
+| XA    |    1 |
++-------+------+
+70 rows in set (0.033 sec)
+
+3) 
+
+MariaDB [fusco]> SELECT DISTINCT state FROM vets WHERE vets.state not in (SELECT Abbreviation FROM States);
++-------+
+| state |
++-------+
+|       |
+| XP    |
+| XJ    |
+| VQ    |
+| XS    |
+| XC    |
+| XB    |
+| ZZ    |
+| XI    |
+| XN    |
+| XE    |
+| XG    |
+| XM    |
+| XF    |
+| SO    |
+| XA    |
+| CZ    |
+| CZ    |
++-------+
+17 rows in set (0.032 sec)
+
+OR 
+
+MariaDB [fusco]> SELECT DISTINCT v.state FROM vets v LEFT JOIN States s ON v.state = s.Abbreviation WHERE s.Abbreviation IS NULL;
++-------+
+| state |
++-------+
+|       |
+| XP    |
+| XJ    |
+| VQ    |
+| XS    |
+| XC    |
+| XB    |
+| ZZ    |
+| XI    |
+| XN    |
+| XE    |
+| XG    |
+| XM    |
+| XF    |
+| SO    |
+| XA    |
+| CZ    |
++-------+
+17 rows in set (0.048 sec)
+
+4)
+
+
+StudentExample:
+
+Database: mynewpaltz
+Tables: CourseTable, StudentTable, EnrollmentTable
+
+EmployeesDatabase:
+
+Database: employee
+Tables: departments, employees,

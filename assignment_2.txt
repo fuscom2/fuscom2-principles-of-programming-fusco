@@ -1,0 +1,53 @@
+2)
+
+MariaDB [(none)]> CREATE DATABASE fusco
+    -> ;
+Query OK, 1 row affected (0.002 sec)
+
+3)
+
+MariaDB [fusco]> CREATE TABLE vets(
+    -> lname VARCHAR(100),
+    -> fname VARCHAR(100),
+    -> town VARCHAR(100),
+    -> state VARCHAR(20));
+Query OK, 0 rows affected (0.025 sec)
+
+4)
+
+MariaDB [fusco]> LOAD DATA LOCAL INFILE '/Users/marcofusco/Desktop/School/SUNY New Paltz/Spring 2026/Principles of Programming/Week 2/VV.csv' INTO TABLE vets FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+Query OK, 58253 rows affected (0.108 sec)            
+Records: 58253  Deleted: 0  Skipped: 0  Warnings: 0
+
+5)
+
+a)
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets
+    -> ;
++----------+
+| COUNT(*) |
++----------+
+|    58253 |
++----------+
+1 row in set (0.017 sec)
+
+b)
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets WHERE town="DAYTON";
++----------+
+| COUNT(*) |
++----------+
+|        0 |
++----------+
+1 row in set (0.020 sec)
+
+c)
+
+MariaDB [fusco]> SELECT COUNT(*) FROM vets WHERE lname="HARRIS";
++----------+
+| COUNT(*) |
++----------+
+|      136 |
++----------+
+1 row in set (0.022 sec
