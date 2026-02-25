@@ -1,9 +1,22 @@
 1)
 
-MariaDB [employee]> SELECT e.name as employee, m.name as manager FROM employees e INNER JOIN employees m WHERE e.manager_id=m.id;
+MariaDB [employee]> SELECT e.name AS employee, m.name AS manager FROM employees e LEFT JOIN employees m ON e.manager_id=m.id;
+
 +-----------+----------+
 | employee  | manager  |
 +-----------+----------+
+| James     | NULL     |
+| Maria     | NULL     |
+| Robert    | NULL     |
+| Emma      | NULL     |
+| Liam      | NULL     |
+| Olivia    | NULL     |
+| Noah      | NULL     |
+| Ava       | NULL     |
+| William   | NULL     |
+| Sophia    | NULL     |
+| Ethan     | NULL     |
+| Isabella  | NULL     |
 | Charlotte | Emma     |
 | Ella      | William  |
 | Scarlett  | Olivia   |
@@ -48,6 +61,7 @@ MariaDB [employee]> SELECT e.name as employee, m.name as manager FROM employees 
 | Sophia    | Maria    |
 | Joseph    | Ava      |
 | Oliver    | Ava      |
+| Omar      | NULL     |
 | Mia       | Liam     |
 | Zoe       | Maria    |
 | Jackson   | James    |
@@ -134,6 +148,7 @@ MariaDB [employee]> SELECT e.name as employee, m.name as manager FROM employees 
 | Ava       | Sophia   |
 | Liam      | Olivia   |
 | Zoe       | William  |
+| Sherif    | NULL     |
 | Isabella  | Sophia   |
 | Olivia    | Noah     |
 | Sebastian | William  |
@@ -179,7 +194,7 @@ MariaDB [employee]> SELECT e.name as employee, m.name as manager FROM employees 
 | Charlotte | Ava      |
 | David     | Olivia   |
 +-----------+----------+
-174 rows in set (0.001 sec)
+188 rows in set (0.001 sec)
 
 2)
 
