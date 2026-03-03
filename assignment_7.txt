@@ -1,0 +1,171 @@
+1)
+
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=5;
+Empty set (0.001 sec)
+
+2) 
+
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=4;
+Empty set (0.001 sec)
+
+3)
+
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=3;
++-----------+-----------+-----------+
+| ssn       | lastName  | firstName |
++-----------+-----------+-----------+
+| 444111110 | Smith     | Ava       |
+| 444111111 | Stevenson | Adrian    |
+| 444111112 | Smith     | George    |
+| 444111118 | Peterson  | Emily     |
++-----------+-----------+-----------+
+4 rows in set (0.001 sec)
+
+4)
+
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=2;
++-----------+----------+-----------+
+| ssn       | lastName | firstName |
++-----------+----------+-----------+
+| 444111113 | Jones    | Adalynn   |
+| 444111115 | Woo      | Josh      |
++-----------+----------+-----------+
+2 rows in set (0.001 sec)
+
+5)
+
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=1;
++-----------+----------+-----------+
+| ssn       | lastName | firstName |
++-----------+----------+-----------+
+| 444111114 | Smith    | Jean      |
+| 444111116 | Smith    | Josh      |
+| 444111117 | Kennedy  | Joy       |
++-----------+----------+----
+
+6)
+
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=0;
+Empty set (0.001 sec)
+
+7)
+
+MariaDB [mynewpaltz]> SELECT subjectID, COUNT(courseID) AS course_count FROM CourseTable WHERE numOfCredits=4 GROUP BY subjectId;
++-----------+--------------+
+| subjectID | course_count |
++-----------+--------------+
+| CSCI      |            1 |
++-----------+--------------+
+1 row in set (0.001 sec)
+
+8)
+
+MariaDB [mynewpaltz]> SELECT subjectID, COUNT(courseID) AS course_count FROM CourseTable WHERE numOfCredits=3 GROUP BY subjectId;
++-----------+--------------+
+| subjectID | course_count |
++-----------+--------------+
+| CSCI      |            3 |
+| EDUC      |            1 |
+| ITEC      |            1 |
+| MATH      |            1 |
++-----------+--------------+
+4 rows in set (0.001 sec)
+
+9)
+
+MariaDB [mynewpaltz]> SELECT subjectID, COUNT(courseID) AS course_count FROM CourseTable WHERE numOfCredits=2 GROUP BY subjectId;
+Empty set (0.001 sec)
+
+10) There is one 5 credit course
+
+11)
+
+MariaDB [mynewpaltz]> SELECT s.lastName, s.firstName, c.title, e.grade FROM StudentTable s INNER JOIN EnrollmentTable e ON s.ssn=e.ssn INNER JOIN CourseTable c ON e.courseID=c.courseID;
++-----------+-----------+-------------------------+-------+
+| lastName  | firstName | title                   | grade |
++-----------+-----------+-------------------------+-------+
+| Smith     | Ava       | Introduction to Java I  | A     |
+| Smith     | Ava       | Introduction to Java II | B     |
+| Smith     | Ava       | Database Systems        | C     |
+| Stevenson | Adrian    | Introduction to Java I  | D     |
+| Stevenson | Adrian    | Introduction to Java II | F     |
+| Stevenson | Adrian    | Database Systems        | A     |
+| Smith     | George    | Rapid Java Application  | B     |
+| Smith     | George    | Calculus I              | C     |
+| Smith     | George    | Calculus II             | D     |
+| Jones     | Adalynn   | Introduction to Java I  | A     |
+| Jones     | Adalynn   | Database Systems        | A     |
+| Smith     | Jean      | Calculus I              | B     |
+| Woo       | Josh      | Calculus I              | F     |
+| Woo       | Josh      | Calculus II             | F     |
+| Smith     | Josh      | Introduction to Java I  | D     |
+| Kennedy   | Joy       | Introduction to Java I  | D     |
+| Peterson  | Emily     | Introduction to Java I  | A     |
+| Peterson  | Emily     | Introduction to Java II | D     |
+| Peterson  | Emily     | Database Systems        | B     |
++-----------+-----------+-------------------------+-------+
+19 rows in set (0.001 sec)
+
+12)
+
+MariaDB [mynewpaltz]> SELECT courseNumber, subjectID, (SELECT COUNT(ssn) FROM EnrollmentTable WHERE courseID=11111) AS enrolled_students_count FROM CourseTable c WHERE c.courseID=11111;
++--------------+-----------+-------------------------+
+| courseNumber | subjectID | enrolled_students_count |
++--------------+-----------+-------------------------+
+|         1301 | CSCI      |                       6 |
++--------------+-----------+-------------------------+
+1 row in set (0.001 sec)
+
+13)
+
+MariaDB [mynewpaltz]> SELECT c.courseID, c.title, COUNT(DISTINCT(e.ssn)) AS students_count FROM CourseTable c INNER JOIN EnrollmentTable e WHERE c.courseID=e.courseID GROUP BY c.courseID;
++----------+-------------------------+----------------+
+| courseID | title                   | students_count |
++----------+-------------------------+----------------+
+|    11111 | Introduction to Java I  |              6 |
+|    11112 | Introduction to Java II |              3 |
+|    11113 | Database Systems        |              4 |
+|    11114 | Rapid Java Application  |              1 |
+|    11115 | Calculus I              |              3 |
+|    11116 | Calculus II             |              2 |
++----------+-------------------------+----------------+
+6 rows in set (0.001 sec)
+
+14)
+
+MariaDB [mynewpaltz]> SELECT s.lastName, s.firstName, SUM(c.numOfCredits) AS number_of_credits FROM StudentTable s INNER JOIN EnrollmentTable e ON s.ssn=e.ssn INNER JOIN CourseTable c ON e.courseID=c.courseID GROUP BY s.ssn;
++-----------+-----------+-------------------+
+| lastName  | firstName | number_of_credits |
++-----------+-----------+-------------------+
+| Smith     | Ava       |                10 |
+| Stevenson | Adrian    |                10 |
+| Smith     | George    |                11 |
+| Jones     | Adalynn   |                 7 |
+| Smith     | Jean      |                 3 |
+| Woo       | Josh      |                 8 |
+| Smith     | Josh      |                 4 |
+| Kennedy   | Joy       |                 4 |
+| Peterson  | Emily     |                10 |
++-----------+-----------+-------------------+
+9 rows in set (0.001 sec)
+
+Week 7 Notes (Self-double JOIN)
+
+MariaDB [employee]> SELECT d.department_name, m.name AS manager, COUNT(e.id) AS employee_count FROM employees e INNER JOIN employees m ON e.manager_id=m.id INNER JOIN departments d ON e.department_id=d.id GROUP BY department_name;
++------------------+----------+----------------+
+| department_name  | manager  | employee_count |
++------------------+----------+----------------+
+| Assembly         | Ethan    |             15 |
+| Health & Safety  | William  |             23 |
+| Inventory        | Robert   |             15 |
+| Logistics        | Emma     |             12 |
+| Machining        | Emma     |             12 |
+| Maintenance      | Emma     |              9 |
+| Packaging        | Sophia   |             10 |
+| Plant Management | Isabella |             15 |
+| Procurement      | Ethan    |             12 |
+| Quality Control  | William  |             11 |
+| R&D              | Sophia   |             14 |
+| Welding          | Noah     |             16 |
++------------------+----------+----------------+
+12 rows in set (0.001 sec)
