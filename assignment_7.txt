@@ -1,36 +1,116 @@
 1)
 
 MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=5;
-Empty set (0.001 sec)
++-----------+----------+-----------+
+| ssn       | lastName | firstName |
++-----------+----------+-----------+
+| 100000041 | Green    | Kevin     |
+| 100000042 | Adams    | Michelle  |
+| 100000043 | Nelson   | Brian     |
+| 100000044 | Baker    | Carol     |
+| 100000045 | Hall     | Edward    |
+| 100000047 | Campbell | Ronald    |
+| 100000048 | Mitchell | Melissa   |
+| 100000049 | Carter   | Timothy   |
+| 100000050 | Roberts  | Deborah   |
+| 100000052 | Phillips | Stephanie |
+| 100000053 | Evans    | Jeffrey   |
+| 100000054 | Turner   | Rebecca   |
+| 100000055 | Diaz     | Ryan      |
+| 100000056 | Parker   | Laura     |
+| 100000058 | Edwards  | Sharon    |
+| 100000059 | Collins  | Gary      |
+| 100000060 | Reyes    | Cynthia   |
++-----------+----------+-----------+
+17 rows in set (0.002 sec)
 
 2) 
 
 MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=4;
-Empty set (0.001 sec)
++-----------+----------+-----------+
+| ssn       | lastName | firstName |
++-----------+----------+-----------+
+| 100000046 | Rivera   | Amanda    |
+| 100000057 | Cruz     | Jacob     |
++-----------+----------+-----------+
+2 rows in set (0.001 sec)
 
 3)
 
 MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=3;
-+-----------+-----------+-----------+
-| ssn       | lastName  | firstName |
-+-----------+-----------+-----------+
-| 444111110 | Smith     | Ava       |
-| 444111111 | Stevenson | Adrian    |
-| 444111112 | Smith     | George    |
-| 444111118 | Peterson  | Emily     |
-+-----------+-----------+-----------+
-4 rows in set (0.001 sec)
++-----------+-----------+-------------+
+| ssn       | lastName  | firstName   |
++-----------+-----------+-------------+
+| 100000001 | Smith     | James       |
+| 100000002 | Johnson   | Mary        |
+| 100000003 | Williams  | Robert      |
+| 100000004 | Brown     | Patricia    |
+| 100000005 | Jones     | John        |
+| 100000006 | Garcia    | Jennifer    |
+| 100000007 | Miller    | Michael     |
+| 100000008 | Davis     | Linda       |
+| 100000009 | Rodriguez | David       |
+| 100000010 | Martinez  | Elizabeth   |
+| 100000011 | Hernandez | William     |
+| 100000012 | Lopez     | Barbara     |
+| 100000013 | Gonzalez  | Richard     |
+| 100000014 | Wilson    | Susan       |
+| 100000015 | Anderson  | Joseph      |
+| 100000016 | Thomas    | Jessica     |
+| 100000017 | Taylor    | Thomas      |
+| 100000018 | Moore     | Sarah       |
+| 100000019 | Jackson   | Christopher |
+| 100000020 | Martin    | Karen       |
++-----------+-----------+-------------+
+20 rows in set (0.001 sec)
 
 4)
 
 MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=2;
-+-----------+----------+-----------+
-| ssn       | lastName | firstName |
-+-----------+----------+-----------+
-| 444111113 | Jones    | Adalynn   |
-| 444111115 | Woo      | Josh      |
-+-----------+----------+-----------+
-2 rows in set (0.001 sec)
++-----------+------------+-----------+
+| ssn       | lastName   | firstName |
++-----------+------------+-----------+
+| 100000061 | Stewart    | Nicholas  |
+| 100000062 | Morris     | Kathleen  |
+| 100000063 | Morales    | Eric      |
+| 100000064 | Murphy     | Amy       |
+| 100000065 | Cook       | Stephen   |
+| 100000066 | Rogers     | Shirley   |
+| 100000067 | Gutierrez  | Jonathan  |
+| 100000068 | Ortiz      | Angela    |
+| 100000069 | Morgan     | Larry     |
+| 100000070 | Cooper     | Helen     |
+| 100000071 | Peterson   | Justin    |
+| 100000072 | Bailey     | Anna      |
+| 100000073 | Reed       | Scott     |
+| 100000074 | Kelly      | Brenda    |
+| 100000075 | Howard     | Brandon   |
+| 100000076 | Ramos      | Pamela    |
+| 100000077 | Kim        | Frank     |
+| 100000078 | Foster     | Nicole    |
+| 100000079 | Alvarado   | Benjamin  |
+| 100000080 | Washington | Emma      |
+| 100000081 | Butler     | Gregory   |
+| 100000082 | Simmons    | Samantha  |
+| 100000083 | Foster     | Samuel    |
+| 100000084 | Gonzales   | Katherine |
+| 100000085 | Bryant     | Raymond   |
+| 100000086 | Alexander  | Christine |
+| 100000087 | Russell    | Patrick   |
+| 100000088 | Griffin    | Debra     |
+| 100000089 | Diaz       | Alexander |
+| 100000090 | Hayes      | Rachel    |
+| 100000092 | Ford       | Janet     |
+| 100000093 | Hamilton   | Dennis    |
+| 100000094 | Graham     | Catherine |
+| 100000095 | Sullivan   | Jerry     |
+| 100000096 | Wallace    | Maria     |
+| 100000097 | Woods      | Tyler     |
+| 100000098 | Cole       | Heather   |
+| 100000099 | West       | Aaron     |
+| 100000100 | Jordan     | Diane     |
++-----------+------------+-----------+
+39 rows in set (0.001 sec)
 
 5)
 
@@ -45,8 +125,32 @@ MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s 
 
 6)
 
-MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=0;
-Empty set (0.001 sec)
+MariaDB [mynewpaltz]> SELECT s.ssn, s.lastName, s.firstName FROM StudentTable s INNER JOIN EnrollmentTable e WHERE e.ssn=s.ssn GROUP BY e.ssn HAVING COUNT(e.courseID)=1;
++-----------+----------+-----------+
+| ssn       | lastName | firstName |
++-----------+----------+-----------+
+| 100000021 | Lee      | Charles   |
+| 100000022 | Perez    | Nancy     |
+| 100000023 | Thompson | Matthew   |
+| 100000024 | White    | Lisa      |
+| 100000025 | Harris   | Anthony   |
+| 100000026 | Sanchez  | Betty     |
+| 100000027 | Clark    | Mark      |
+| 100000028 | Ramirez  | Margaret  |
+| 100000029 | Lewis    | Donald    |
+| 100000030 | Robinson | Sandra    |
+| 100000031 | Walker   | Steven    |
+| 100000032 | Young    | Ashley    |
+| 100000033 | Allen    | Paul      |
+| 100000034 | King     | Dorothy   |
+| 100000035 | Wright   | Andrew    |
+| 100000036 | Scott    | Kimberly  |
+| 100000037 | Torres   | Joshua    |
+| 100000038 | Nguyen   | Emily     |
+| 100000039 | Hill     | Kenneth   |
+| 100000040 | Flores   | Donna     |
++-----------+----------+-----------+
+20 rows in set (0.001 sec)
 
 7)
 
@@ -54,9 +158,11 @@ MariaDB [mynewpaltz]> SELECT subjectID, COUNT(courseID) AS course_count FROM Cou
 +-----------+--------------+
 | subjectID | course_count |
 +-----------+--------------+
-| CSCI      |            1 |
+| CS        |            2 |
+| ENGR      |            2 |
+| MATH      |            2 |
 +-----------+--------------+
-1 row in set (0.001 sec)
+3 rows in set (0.001 sec)
 
 8)
 
@@ -64,90 +170,432 @@ MariaDB [mynewpaltz]> SELECT subjectID, COUNT(courseID) AS course_count FROM Cou
 +-----------+--------------+
 | subjectID | course_count |
 +-----------+--------------+
-| CSCI      |            3 |
-| EDUC      |            1 |
-| ITEC      |            1 |
-| MATH      |            1 |
+| CS        |            3 |
+| ENGL      |            5 |
+| ENGR      |            2 |
+| MATH      |            3 |
 +-----------+--------------+
 4 rows in set (0.001 sec)
 
 9)
 
 MariaDB [mynewpaltz]> SELECT subjectID, COUNT(courseID) AS course_count FROM CourseTable WHERE numOfCredits=2 GROUP BY subjectId;
-Empty set (0.001 sec)
++-----------+--------------+
+| subjectID | course_count |
++-----------+--------------+
+| ENGR      |            1 |
++-----------+--------------+
+1 row in set (0.001 sec)
 
-10) There is one 5 credit course
+10) There are no 5 credit courses
 
 11)
 
 MariaDB [mynewpaltz]> SELECT s.lastName, s.firstName, c.title, e.grade FROM StudentTable s INNER JOIN EnrollmentTable e ON s.ssn=e.ssn INNER JOIN CourseTable c ON e.courseID=c.courseID;
-+-----------+-----------+-------------------------+-------+
-| lastName  | firstName | title                   | grade |
-+-----------+-----------+-------------------------+-------+
-| Smith     | Ava       | Introduction to Java I  | A     |
-| Smith     | Ava       | Introduction to Java II | B     |
-| Smith     | Ava       | Database Systems        | C     |
-| Stevenson | Adrian    | Introduction to Java I  | D     |
-| Stevenson | Adrian    | Introduction to Java II | F     |
-| Stevenson | Adrian    | Database Systems        | A     |
-| Smith     | George    | Rapid Java Application  | B     |
-| Smith     | George    | Calculus I              | C     |
-| Smith     | George    | Calculus II             | D     |
-| Jones     | Adalynn   | Introduction to Java I  | A     |
-| Jones     | Adalynn   | Database Systems        | A     |
-| Smith     | Jean      | Calculus I              | B     |
-| Woo       | Josh      | Calculus I              | F     |
-| Woo       | Josh      | Calculus II             | F     |
-| Smith     | Josh      | Introduction to Java I  | D     |
-| Kennedy   | Joy       | Introduction to Java I  | D     |
-| Peterson  | Emily     | Introduction to Java I  | A     |
-| Peterson  | Emily     | Introduction to Java II | D     |
-| Peterson  | Emily     | Database Systems        | B     |
-+-----------+-----------+-------------------------+-------+
-19 rows in set (0.001 sec)
++------------+-------------+-----------------------------+-------+
+| lastName   | firstName   | title                       | grade |
++------------+-------------+-----------------------------+-------+
+| Smith      | James       | Calculus I                  | A     |
+| Garcia     | Jennifer    | Calculus I                  | B     |
+| Hernandez  | William     | Calculus I                  | B     |
+| Thomas     | Jessica     | Calculus I                  | C     |
+| Lee        | Charles     | Calculus I                  | A     |
+| Green      | Kevin       | Calculus I                  | A     |
+| Hall       | Edward      | Calculus I                  | B     |
+| Carter     | Timothy     | Calculus I                  | A     |
+| Reyes      | Cynthia     | Calculus I                  | A     |
+| Bailey     | Anna        | Calculus I                  | B     |
+| Kim        | Frank       | Calculus I                  | C     |
+| Ford       | Janet       | Calculus I                  | A     |
+| Woods      | Tyler       | Calculus I                  | A     |
+| Johnson    | Mary        | Calculus II                 | B     |
+| Miller     | Michael     | Calculus II                 | A     |
+| Lopez      | Barbara     | Calculus II                 | A     |
+| Taylor     | Thomas      | Calculus II                 | B     |
+| Perez      | Nancy       | Calculus II                 | B     |
+| Green      | Kevin       | Calculus II                 | B     |
+| Rivera     | Amanda      | Calculus II                 | A     |
+| Roberts    | Deborah     | Calculus II                 | B     |
+| Edwards    | Sharon      | Calculus II                 | A     |
+| Reed       | Scott       | Calculus II                 | C     |
+| Foster     | Nicole      | Calculus II                 | B     |
+| Hamilton   | Dennis      | Calculus II                 | B     |
+| Cole       | Heather     | Calculus II                 | C     |
+| Williams   | Robert      | Linear Algebra              | A     |
+| Davis      | Linda       | Linear Algebra              | C     |
+| Gonzalez   | Richard     | Linear Algebra              | B     |
+| Moore      | Sarah       | Linear Algebra              | A     |
+| Thompson   | Matthew     | Linear Algebra              | C     |
+| Green      | Kevin       | Linear Algebra              | A     |
+| Hall       | Edward      | Linear Algebra              | B     |
+| Collins    | Gary        | Linear Algebra              | C     |
+| Kelly      | Brenda      | Linear Algebra              | A     |
+| Alvarado   | Benjamin    | Linear Algebra              | A     |
+| Graham     | Catherine   | Linear Algebra              | C     |
+| West       | Aaron       | Linear Algebra              | B     |
+| Brown      | Patricia    | Probability and Statistics  | B     |
+| Rodriguez  | David       | Probability and Statistics  | B     |
+| Wilson     | Susan       | Probability and Statistics  | C     |
+| Jackson    | Christopher | Probability and Statistics  | B     |
+| White      | Lisa        | Probability and Statistics  | A     |
+| Green      | Kevin       | Probability and Statistics  | C     |
+| Rivera     | Amanda      | Probability and Statistics  | A     |
+| Carter     | Timothy     | Probability and Statistics  | B     |
+| Phillips   | Stephanie   | Probability and Statistics  | A     |
+| Reyes      | Cynthia     | Probability and Statistics  | B     |
+| Howard     | Brandon     | Probability and Statistics  | B     |
+| Washington | Emma        | Probability and Statistics  | C     |
+| Sullivan   | Jerry       | Probability and Statistics  | A     |
+| Jordan     | Diane       | Probability and Statistics  | A     |
+| Jones      | John        | Abstract Algebra            | C     |
+| Martinez   | Elizabeth   | Abstract Algebra            | A     |
+| Anderson   | Joseph      | Abstract Algebra            | A     |
+| Martin     | Karen       | Abstract Algebra            | C     |
+| Harris     | Anthony     | Abstract Algebra            | B     |
+| Green      | Kevin       | Abstract Algebra            | B     |
+| Hall       | Edward      | Abstract Algebra            | A     |
+| Roberts    | Deborah     | Abstract Algebra            | C     |
+| Evans      | Jeffrey     | Abstract Algebra            | B     |
+| Stewart    | Nicholas    | Abstract Algebra            | A     |
+| Ramos      | Pamela      | Abstract Algebra            | C     |
+| Butler     | Gregory     | Abstract Algebra            | B     |
+| Wallace    | Maria       | Abstract Algebra            | B     |
+| Smith      | James       | Intro to Computer Science   | B     |
+| Garcia     | Jennifer    | Intro to Computer Science   | C     |
+| Thomas     | Jessica     | Intro to Computer Science   | B     |
+| Sanchez    | Betty       | Intro to Computer Science   | C     |
+| Adams      | Michelle    | Intro to Computer Science   | B     |
+| Rivera     | Amanda      | Intro to Computer Science   | B     |
+| Turner     | Rebecca     | Intro to Computer Science   | C     |
+| Morris     | Kathleen    | Intro to Computer Science   | C     |
+| Kim        | Frank       | Intro to Computer Science   | A     |
+| Simmons    | Samantha    | Intro to Computer Science   | A     |
+| Woods      | Tyler       | Intro to Computer Science   | C     |
+| Johnson    | Mary        | Data Structures             | C     |
+| Miller     | Michael     | Data Structures             | B     |
+| Taylor     | Thomas      | Data Structures             | A     |
+| Clark      | Mark        | Data Structures             | A     |
+| Adams      | Michelle    | Data Structures             | A     |
+| Hall       | Edward      | Data Structures             | C     |
+| Carter     | Timothy     | Data Structures             | A     |
+| Phillips   | Stephanie   | Data Structures             | B     |
+| Diaz       | Ryan        | Data Structures             | A     |
+| Morales    | Eric        | Data Structures             | B     |
+| Foster     | Nicole      | Data Structures             | B     |
+| Foster     | Samuel      | Data Structures             | C     |
+| Cole       | Heather     | Data Structures             | A     |
+| Williams   | Robert      | Operating Systems           | A     |
+| Davis      | Linda       | Operating Systems           | A     |
+| Moore      | Sarah       | Operating Systems           | C     |
+| Ramirez    | Margaret    | Operating Systems           | B     |
+| Adams      | Michelle    | Operating Systems           | C     |
+| Rivera     | Amanda      | Operating Systems           | B     |
+| Roberts    | Deborah     | Operating Systems           | A     |
+| Evans      | Jeffrey     | Operating Systems           | A     |
+| Parker     | Laura       | Operating Systems           | B     |
+| Murphy     | Amy         | Operating Systems           | A     |
+| Alvarado   | Benjamin    | Operating Systems           | C     |
+| Gonzales   | Katherine   | Operating Systems           | B     |
+| West       | Aaron       | Operating Systems           | B     |
+| Brown      | Patricia    | Database Management Systems | B     |
+| Rodriguez  | David       | Database Management Systems | B     |
+| Jackson    | Christopher | Database Management Systems | A     |
+| Lewis      | Donald      | Database Management Systems | C     |
+| Adams      | Michelle    | Database Management Systems | B     |
+| Hall       | Edward      | Database Management Systems | A     |
+| Turner     | Rebecca     | Database Management Systems | B     |
+| Cruz       | Jacob       | Database Management Systems | A     |
+| Cook       | Stephen     | Database Management Systems | C     |
+| Washington | Emma        | Database Management Systems | A     |
+| Bryant     | Raymond     | Database Management Systems | A     |
+| Jordan     | Diane       | Database Management Systems | C     |
+| Jones      | John        | Artificial Intelligence     | A     |
+| Martinez   | Elizabeth   | Artificial Intelligence     | C     |
+| Martin     | Karen       | Artificial Intelligence     | B     |
+| Robinson   | Sandra      | Artificial Intelligence     | A     |
+| Adams      | Michelle    | Artificial Intelligence     | A     |
+| Carter     | Timothy     | Artificial Intelligence     | C     |
+| Phillips   | Stephanie   | Artificial Intelligence     | C     |
+| Diaz       | Ryan        | Artificial Intelligence     | C     |
+| Edwards    | Sharon      | Artificial Intelligence     | C     |
+| Stewart    | Nicholas    | Artificial Intelligence     | B     |
+| Rogers     | Shirley     | Artificial Intelligence     | B     |
+| Butler     | Gregory     | Artificial Intelligence     | B     |
+| Alexander  | Christine   | Artificial Intelligence     | C     |
+| Smith      | James       | English Composition I       | A     |
+| Hernandez  | William     | English Composition I       | B     |
+| Thomas     | Jessica     | English Composition I       | A     |
+| Walker     | Steven      | English Composition I       | B     |
+| Nelson     | Brian       | English Composition I       | C     |
+| Campbell   | Ronald      | English Composition I       | C     |
+| Roberts    | Deborah     | English Composition I       | B     |
+| Evans      | Jeffrey     | English Composition I       | C     |
+| Parker     | Laura       | English Composition I       | A     |
+| Collins    | Gary        | English Composition I       | B     |
+| Morris     | Kathleen    | English Composition I       | A     |
+| Gutierrez  | Jonathan    | English Composition I       | A     |
+| Simmons    | Samantha    | English Composition I       | C     |
+| Russell    | Patrick     | English Composition I       | B     |
+| Johnson    | Mary        | English Composition II      | B     |
+| Lopez      | Barbara     | English Composition II      | C     |
+| Taylor     | Thomas      | English Composition II      | B     |
+| Young      | Ashley      | English Composition II      | C     |
+| Nelson     | Brian       | English Composition II      | B     |
+| Mitchell   | Melissa     | English Composition II      | B     |
+| Turner     | Rebecca     | English Composition II      | A     |
+| Cruz       | Jacob       | English Composition II      | C     |
+| Reyes      | Cynthia     | English Composition II      | A     |
+| Morales    | Eric        | English Composition II      | C     |
+| Ortiz      | Angela      | English Composition II      | C     |
+| Foster     | Samuel      | English Composition II      | A     |
+| Griffin    | Debra       | English Composition II      | A     |
+| Williams   | Robert      | World Literature            | C     |
+| Gonzalez   | Richard     | World Literature            | A     |
+| Moore      | Sarah       | World Literature            | C     |
+| Allen      | Paul        | World Literature            | A     |
+| Nelson     | Brian       | World Literature            | A     |
+| Campbell   | Ronald      | World Literature            | B     |
+| Carter     | Timothy     | World Literature            | B     |
+| Phillips   | Stephanie   | World Literature            | A     |
+| Diaz       | Ryan        | World Literature            | B     |
+| Edwards    | Sharon      | World Literature            | A     |
+| Murphy     | Amy         | World Literature            | B     |
+| Morgan     | Larry       | World Literature            | B     |
+| Gonzales   | Katherine   | World Literature            | B     |
+| Diaz       | Alexander   | World Literature            | C     |
+| Brown      | Patricia    | Creative Writing            | A     |
+| Wilson     | Susan       | Creative Writing            | B     |
+| Jackson    | Christopher | Creative Writing            | A     |
+| King       | Dorothy     | Creative Writing            | B     |
+| Nelson     | Brian       | Creative Writing            | A     |
+| Mitchell   | Melissa     | Creative Writing            | A     |
+| Roberts    | Deborah     | Creative Writing            | A     |
+| Evans      | Jeffrey     | Creative Writing            | B     |
+| Parker     | Laura       | Creative Writing            | C     |
+| Collins    | Gary        | Creative Writing            | B     |
+| Cook       | Stephen     | Creative Writing            | A     |
+| Cooper     | Helen       | Creative Writing            | A     |
+| Bryant     | Raymond     | Creative Writing            | C     |
+| Hayes      | Rachel      | Creative Writing            | B     |
+| Jones      | John        | Shakespeare                 | B     |
+| Anderson   | Joseph      | Shakespeare                 | A     |
+| Martin     | Karen       | Shakespeare                 | B     |
+| Wright     | Andrew      | Shakespeare                 | C     |
+| Nelson     | Brian       | Shakespeare                 | C     |
+| Campbell   | Ronald      | Shakespeare                 | A     |
+| Turner     | Rebecca     | Shakespeare                 | B     |
+| Cruz       | Jacob       | Shakespeare                 | B     |
+| Reyes      | Cynthia     | Shakespeare                 | C     |
+| Rogers     | Shirley     | Shakespeare                 | B     |
+| Peterson   | Justin      | Shakespeare                 | C     |
+| Alexander  | Christine   | Shakespeare                 | A     |
+| Garcia     | Jennifer    | Intro to Engineering        | A     |
+| Hernandez  | William     | Intro to Engineering        | A     |
+| Scott      | Kimberly    | Intro to Engineering        | A     |
+| Baker      | Carol       | Intro to Engineering        | A     |
+| Mitchell   | Melissa     | Intro to Engineering        | C     |
+| Phillips   | Stephanie   | Intro to Engineering        | B     |
+| Diaz       | Ryan        | Intro to Engineering        | A     |
+| Edwards    | Sharon      | Intro to Engineering        | B     |
+| Gutierrez  | Jonathan    | Intro to Engineering        | C     |
+| Bailey     | Anna        | Intro to Engineering        | B     |
+| Russell    | Patrick     | Intro to Engineering        | B     |
+| Ford       | Janet       | Intro to Engineering        | C     |
+| Miller     | Michael     | Statics                     | B     |
+| Lopez      | Barbara     | Statics                     | B     |
+| Torres     | Joshua      | Statics                     | B     |
+| Baker      | Carol       | Statics                     | C     |
+| Campbell   | Ronald      | Statics                     | B     |
+| Evans      | Jeffrey     | Statics                     | A     |
+| Parker     | Laura       | Statics                     | A     |
+| Collins    | Gary        | Statics                     | A     |
+| Ortiz      | Angela      | Statics                     | A     |
+| Reed       | Scott       | Statics                     | A     |
+| Griffin    | Debra       | Statics                     | C     |
+| Hamilton   | Dennis      | Statics                     | B     |
+| Davis      | Linda       | Dynamics                    | A     |
+| Gonzalez   | Richard     | Dynamics                    | A     |
+| Nguyen     | Emily       | Dynamics                    | C     |
+| Baker      | Carol       | Dynamics                    | B     |
+| Mitchell   | Melissa     | Dynamics                    | A     |
+| Turner     | Rebecca     | Dynamics                    | C     |
+| Cruz       | Jacob       | Dynamics                    | A     |
+| Reyes      | Cynthia     | Dynamics                    | B     |
+| Morgan     | Larry       | Dynamics                    | B     |
+| Kelly      | Brenda      | Dynamics                    | C     |
+| Diaz       | Alexander   | Dynamics                    | A     |
+| Graham     | Catherine   | Dynamics                    | A     |
+| Rodriguez  | David       | Thermodynamics              | C     |
+| Wilson     | Susan       | Thermodynamics              | C     |
+| Hill       | Kenneth     | Thermodynamics              | A     |
+| Baker      | Carol       | Thermodynamics              | A     |
+| Campbell   | Ronald      | Thermodynamics              | A     |
+| Diaz       | Ryan        | Thermodynamics              | B     |
+| Edwards    | Sharon      | Thermodynamics              | C     |
+| Cooper     | Helen       | Thermodynamics              | C     |
+| Howard     | Brandon     | Thermodynamics              | B     |
+| Hayes      | Rachel      | Thermodynamics              | B     |
+| Sullivan   | Jerry       | Thermodynamics              | C     |
+| Martinez   | Elizabeth   | Circuit Analysis            | A     |
+| Anderson   | Joseph      | Circuit Analysis            | B     |
+| Flores     | Donna       | Circuit Analysis            | B     |
+| Baker      | Carol       | Circuit Analysis            | B     |
+| Mitchell   | Melissa     | Circuit Analysis            | B     |
+| Parker     | Laura       | Circuit Analysis            | C     |
+| Collins    | Gary        | Circuit Analysis            | B     |
+| Peterson   | Justin      | Circuit Analysis            | A     |
+| Ramos      | Pamela      | Circuit Analysis            | A     |
+| Wallace    | Maria       | Circuit Analysis            | B     |
++------------+-------------+-----------------------------+-------+
+251 rows in set (0.001 sec)
 
 12)
 
-MariaDB [mynewpaltz]> SELECT courseNumber, subjectID, (SELECT COUNT(ssn) FROM EnrollmentTable WHERE courseID=11111) AS enrolled_students_count FROM CourseTable c WHERE c.courseID=11111;
+MariaDB [mynewpaltz]> SELECT courseNumber, subjectID, (SELECT COUNT(ssn) FROM EnrollmentTable WHERE courseID=11111) AS enrolled_students_count FROM CourseTable c WHERE c.courseID=10;
 +--------------+-----------+-------------------------+
 | courseNumber | subjectID | enrolled_students_count |
 +--------------+-----------+-------------------------+
-|         1301 | CSCI      |                       6 |
+|          450 | CS        |                       0 |
 +--------------+-----------+-------------------------+
 1 row in set (0.001 sec)
 
 13)
 
 MariaDB [mynewpaltz]> SELECT c.courseID, c.title, COUNT(DISTINCT(e.ssn)) AS students_count FROM CourseTable c INNER JOIN EnrollmentTable e WHERE c.courseID=e.courseID GROUP BY c.courseID;
-+----------+-------------------------+----------------+
-| courseID | title                   | students_count |
-+----------+-------------------------+----------------+
-|    11111 | Introduction to Java I  |              6 |
-|    11112 | Introduction to Java II |              3 |
-|    11113 | Database Systems        |              4 |
-|    11114 | Rapid Java Application  |              1 |
-|    11115 | Calculus I              |              3 |
-|    11116 | Calculus II             |              2 |
-+----------+-------------------------+----------------+
-6 rows in set (0.001 sec)
++----------+-----------------------------+----------------+
+| courseID | title                       | students_count |
++----------+-----------------------------+----------------+
+|        1 | Calculus I                  |             13 |
+|        2 | Calculus II                 |             13 |
+|        3 | Linear Algebra              |             12 |
+|        4 | Probability and Statistics  |             14 |
+|        5 | Abstract Algebra            |             13 |
+|        6 | Intro to Computer Science   |             11 |
+|        7 | Data Structures             |             13 |
+|        8 | Operating Systems           |             13 |
+|        9 | Database Management Systems |             12 |
+|       10 | Artificial Intelligence     |             13 |
+|       11 | English Composition I       |             14 |
+|       12 | English Composition II      |             13 |
+|       13 | World Literature            |             14 |
+|       14 | Creative Writing            |             14 |
+|       15 | Shakespeare                 |             12 |
+|       16 | Intro to Engineering        |             12 |
+|       17 | Statics                     |             12 |
+|       18 | Dynamics                    |             12 |
+|       19 | Thermodynamics              |             11 |
+|       20 | Circuit Analysis            |             10 |
++----------+-----------------------------+----------------+
+20 rows in set (0.001 sec)
+
 
 14)
 
 MariaDB [mynewpaltz]> SELECT s.lastName, s.firstName, SUM(c.numOfCredits) AS number_of_credits FROM StudentTable s INNER JOIN EnrollmentTable e ON s.ssn=e.ssn INNER JOIN CourseTable c ON e.courseID=c.courseID GROUP BY s.ssn;
-+-----------+-----------+-------------------+
-| lastName  | firstName | number_of_credits |
-+-----------+-----------+-------------------+
-| Smith     | Ava       |                10 |
-| Stevenson | Adrian    |                10 |
-| Smith     | George    |                11 |
-| Jones     | Adalynn   |                 7 |
-| Smith     | Jean      |                 3 |
-| Woo       | Josh      |                 8 |
-| Smith     | Josh      |                 4 |
-| Kennedy   | Joy       |                 4 |
-| Peterson  | Emily     |                10 |
-+-----------+-----------+-------------------+
-9 rows in set (0.001 sec)
++------------+-------------+-------------------+
+| lastName   | firstName   | number_of_credits |
++------------+-------------+-------------------+
+| Smith      | James       |                11 |
+| Johnson    | Mary        |                10 |
+| Williams   | Robert      |                10 |
+| Brown      | Patricia    |                 9 |
+| Jones      | John        |                 9 |
+| Garcia     | Jennifer    |                10 |
+| Miller     | Michael     |                10 |
+| Davis      | Linda       |                10 |
+| Rodriguez  | David       |                10 |
+| Martinez   | Elizabeth   |                10 |
+| Hernandez  | William     |                 9 |
+| Lopez      | Barbara     |                10 |
+| Gonzalez   | Richard     |                 9 |
+| Wilson     | Susan       |                10 |
+| Anderson   | Joseph      |                10 |
+| Thomas     | Jessica     |                11 |
+| Taylor     | Thomas      |                10 |
+| Moore      | Sarah       |                10 |
+| Jackson    | Christopher |                 9 |
+| Martin     | Karen       |                 9 |
+| Lee        | Charles     |                 4 |
+| Perez      | Nancy       |                 4 |
+| Thompson   | Matthew     |                 3 |
+| White      | Lisa        |                 3 |
+| Harris     | Anthony     |                 3 |
+| Sanchez    | Betty       |                 4 |
+| Clark      | Mark        |                 3 |
+| Ramirez    | Margaret    |                 4 |
+| Lewis      | Donald      |                 3 |
+| Robinson   | Sandra      |                 3 |
+| Walker     | Steven      |                 3 |
+| Young      | Ashley      |                 3 |
+| Allen      | Paul        |                 3 |
+| King       | Dorothy     |                 3 |
+| Wright     | Andrew      |                 3 |
+| Scott      | Kimberly    |                 2 |
+| Torres     | Joshua      |                 3 |
+| Nguyen     | Emily       |                 3 |
+| Hill       | Kenneth     |                 4 |
+| Flores     | Donna       |                 4 |
+| Green      | Kevin       |                17 |
+| Adams      | Michelle    |                17 |
+| Nelson     | Brian       |                15 |
+| Baker      | Carol       |                16 |
+| Hall       | Edward      |                16 |
+| Rivera     | Amanda      |                15 |
+| Campbell   | Ronald      |                16 |
+| Mitchell   | Melissa     |                15 |
+| Carter     | Timothy     |                16 |
+| Roberts    | Deborah     |                17 |
+| Phillips   | Stephanie   |                14 |
+| Evans      | Jeffrey     |                16 |
+| Turner     | Rebecca     |                16 |
+| Diaz       | Ryan        |                15 |
+| Parker     | Laura       |                17 |
+| Cruz       | Jacob       |                12 |
+| Edwards    | Sharon      |                16 |
+| Collins    | Gary        |                16 |
+| Reyes      | Cynthia     |                16 |
+| Stewart    | Nicholas    |                 6 |
+| Morris     | Kathleen    |                 7 |
+| Morales    | Eric        |                 6 |
+| Murphy     | Amy         |                 7 |
+| Cook       | Stephen     |                 6 |
+| Rogers     | Shirley     |                 6 |
+| Gutierrez  | Jonathan    |                 5 |
+| Ortiz      | Angela      |                 6 |
+| Morgan     | Larry       |                 6 |
+| Cooper     | Helen       |                 7 |
+| Peterson   | Justin      |                 7 |
+| Bailey     | Anna        |                 6 |
+| Reed       | Scott       |                 7 |
+| Kelly      | Brenda      |                 6 |
+| Howard     | Brandon     |                 7 |
+| Ramos      | Pamela      |                 7 |
+| Kim        | Frank       |                 8 |
+| Foster     | Nicole      |                 7 |
+| Alvarado   | Benjamin    |                 7 |
+| Washington | Emma        |                 6 |
+| Butler     | Gregory     |                 6 |
+| Simmons    | Samantha    |                 7 |
+| Foster     | Samuel      |                 6 |
+| Gonzales   | Katherine   |                 7 |
+| Bryant     | Raymond     |                 6 |
+| Alexander  | Christine   |                 6 |
+| Russell    | Patrick     |                 5 |
+| Griffin    | Debra       |                 6 |
+| Diaz       | Alexander   |                 6 |
+| Hayes      | Rachel      |                 7 |
+| Ford       | Janet       |                 6 |
+| Hamilton   | Dennis      |                 7 |
+| Graham     | Catherine   |                 6 |
+| Sullivan   | Jerry       |                 7 |
+| Wallace    | Maria       |                 7 |
+| Woods      | Tyler       |                 8 |
+| Cole       | Heather     |                 7 |
+| West       | Aaron       |                 7 |
+| Jordan     | Diane       |                 6 |
++------------+-------------+-------------------+
+98 rows in set (0.001 sec)
+
 
 Week 7 Notes (Self-double JOIN)
 
@@ -169,3 +617,4 @@ MariaDB [employee]> SELECT d.department_name, m.name AS manager, COUNT(e.id) AS 
 | Welding          | Noah     |             16 |
 +------------------+----------+----------------+
 12 rows in set (0.001 sec)
+
