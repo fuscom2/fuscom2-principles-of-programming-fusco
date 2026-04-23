@@ -1,0 +1,9 @@
+2)
+
+b) Output is 10000
+
+c) Output is 0
+
+d) The output is 10000 despite not being synchronized
+
+3) The threaded output time is longer when n is 1000 or less and less than the non-threaded calculations when n is greater than 1000. The threaded time gets signifcantly less than non-threaded as n increases
